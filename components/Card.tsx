@@ -22,7 +22,7 @@ const Card = ({
 }: Props) => {
   return (
     <Link href={`/books/${id}`} key={id}>
-      <div className='flex flex-col p-2 rounded'>
+      <div className='flex flex-col p-2 rounded border border-b-purple-800'>
         <div className='relative w-100 rounded overflow-hidden h-[128px]'>
           <Image
             src={image}
@@ -38,7 +38,7 @@ const Card = ({
         </div>
         <h3>{title}</h3>
         <p>
-          {publishedDate}-{authors.join(',')}
+          <span>{publishedDate}</span>-<span>{authors.join(',')}</span>
         </p>
       </div>
     </Link>
