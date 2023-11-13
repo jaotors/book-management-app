@@ -23,8 +23,14 @@ const Card = ({
   return (
     <Link href={`/books/${id}`} key={id}>
       <div className='flex flex-col p-2 rounded'>
-        <div className='w-100 rounded'>
-          <Image src={image} alt={`Book Preview of ${title}`} />
+        <div className='relative w-100 rounded overflow-hidden h-[128px]'>
+          <Image
+            src={image}
+            layout='fill'
+            objectFit='contain'
+            className='w-100'
+            alt={`Book Preview of ${title}`}
+          />
         </div>
         <div className='flex justify-between items-center'>
           <span>{status}</span>
