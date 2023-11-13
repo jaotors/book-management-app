@@ -27,6 +27,13 @@ requirements:
       - returned time and condition
   - remember and highlight previously selected books? (like the anchor tag? if its viewed?)
 
+Books API
+- id
+- description: volumeInfo.description
+- title: volumeInfo.title
+- publishedDate: volumeInfo.publishedDate
+- authors: volumeInfo.authors
+- image: volumeInfo.imageLinks.thumbnail
 
 Conclusion
 - Google Books API is only for the get data of all the books
