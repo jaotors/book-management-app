@@ -1,0 +1,75 @@
+
+Company Library
+- Book
+  - type: 'free' | 'fee'
+  - year: string
+  - title: string
+  - author: string
+  - condition: 'damaged' | 'undamaged'
+  - status: 'free to hire' | 'fee charged'
+
+Solution:
+- book management application
+
+requirements:
+- use Book API as data source
+- search functionality
+  - specific book
+  - can see the ff: after search
+    - loaned
+    - available
+- selected book
+  - redirect to the book summary page
+    - if book is being borrowed save the checkout details
+      - customer name
+      - checkout date and time
+      - condition of the book
+    - if book is being returned
+      - returned time and condition
+  - remember and highlight previously selected books? (like the anchor tag? if its viewed?)
+
+
+Conclusion
+- Google Books API is only for the get data of all the books
+- adding the status/free/fee charged is on our end
+
+
+process flow
+- searchbox
+  - search title of the book
+  - click search
+- display books that has been search
+  - book display
+    - availability, fee, and condition
+  - book is clickable
+  - selecting book
+    - must remember that it is viewed
+  - go to book details page 
+  - display the ff:
+    - summary
+    - return/loan
+
+
+workflow
+- make the app work
+- add test || refactor
+- deploy it to vercel
+- make PR for branching
+- add ci/cd if there is time
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
