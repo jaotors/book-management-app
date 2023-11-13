@@ -28,7 +28,7 @@ const BookSummary = async ({ params: { id } }: Props) => {
         <p>
           {data.volumeInfo.publishedDate} - {data.volumeInfo.authors.join(', ')}
         </p>
-        <BookActions status='fee' />
+        <BookActions id={id} status='fee' />
       </div>
     </div>
   )

@@ -9,3 +9,13 @@ type BookInfo = {
     publishedDate: string
   }
 }
+
+type ParsedBookInfo = {
+  id: string
+  condition: 'undamaged' | 'damaged' | string // need to know how to remove this string
+  status: 'free' | 'paid' | string
+  borrower: string
+  borrowed: boolean
+  borrowedAt?: Date | null
+  returnedAt?: Date | null
+}

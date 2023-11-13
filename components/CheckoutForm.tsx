@@ -5,6 +5,7 @@ import { useState, FormEvent } from 'react'
 import DatePickerField from './DatePickerField'
 import FormField from './FormField'
 import SelectField from './SelectField'
+import { addBook, getBook } from '@/localStorage'
 
 const BOOK_CONDITIONS = [
   {
@@ -17,11 +18,43 @@ const BOOK_CONDITIONS = [
   },
 ]
 
-const CheckoutForm = () => {
-  const [selectedCondition, setSelectedCondition] = useState(BOOK_CONDITIONS[0])
+type Condition = {
+  id: 'undamaged' | 'undamaged' | string
+  name: string
+}
+
+type Props = {
+  id: string
+  status: string
+}
+
+const CheckoutForm = ({ id, status }: Props) => {
+  const [selectedCondition, setSelectedCondition] = useState<Condition>(BOOK_CONDITIONS[0])
+  const [dateTime, setDateTime] = useState<Date | null>(null)
 
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
+
+    const formData = new FormData(evt.currentTarget)
+    const name = formData.get('name')
+
+    if (!name || !selectedCondition || !dateTime) return
+
+    const data = {
+      id,
+      borrower: name.toString(),
+      status,
+      borrowed: true,
+      condition: selectedCondition.id,
+      borrowedAt: dateTime,
+    }
+
+    const book = getBook(data.id)
+
+    if (!book) {
+      const response = addBook(data)
+      
+    }
   }
 
   return (
@@ -33,7 +66,7 @@ const CheckoutForm = () => {
           className='border border-purple-500 rounded p-2'
         />
       </FormField>
-      <DatePickerField label='Date and time' />
+      <DatePickerField label='Date and time' onChange={setDateTime} />
       <SelectField
         label='Condition'
         options={BOOK_CONDITIONS}
@@ -42,7 +75,10 @@ const CheckoutForm = () => {
         }}
         value={selectedCondition}
       />
-      <button className='bg-purple-500 rounded text-white py-2 px-4'>
+      <button
+        type='submit'
+        className='bg-purple-500 rounded text-white py-2 px-4'
+      >
         Save
       </button>
     </form>
