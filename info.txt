@@ -1,7 +1,6 @@
 
 Company Library
 - Book
-  - type: 'free' | 'fee'
   - year: string
   - title: string
   - author: string
