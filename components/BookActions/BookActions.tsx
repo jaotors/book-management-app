@@ -15,7 +15,7 @@ const BookActions = ({ id, status }: Props) => {
       <Popover.Button className='bg-purple-500 rounded text-white py-2 px-4'>
         Checkout
       </Popover.Button>
-      <Popover.Panel className='absolute z-10 border border-b-purple-950 rounded'>
+      <Popover.Panel className='absolute right-0 z-10 border bg-white border-b-purple-950 rounded'>
         <CheckoutForm id={id} status={status} />
       </Popover.Panel>
     </Popover>

@@ -65,6 +65,28 @@ workflow
 - html markup for description
 
 
+fix data transformation
+- status: randomizer
+
+
+
+fix design:
+- root 
+  - search component page
+- /books
+  - header
+    - search component
+- /books/slug_id
+  - header
+    - search component
+  - main
+    - display list
+
+
+
+
+
+
 
 
 

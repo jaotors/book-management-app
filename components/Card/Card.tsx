@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Tags from '../Tags'
 
 type Props = {
   id: string
@@ -23,7 +24,7 @@ const Card = ({
   return (
     <Link href={`/books/${id}`} key={id}>
       <div className='flex flex-col p-2 rounded border border-b-purple-800'>
-        <div className='relative w-100 rounded overflow-hidden h-[128px]'>
+        <div className='relative w-100 rounded overflow-hidden h-[128px] mb-2'>
           <Image
             src={image}
             layout='fill'
@@ -33,13 +34,14 @@ const Card = ({
           />
         </div>
         <div className='flex justify-between items-center'>
-          <span>{status}</span>
-          <span>{condition}</span>
+          <Tags name={status} important />
+          <Tags name={condition} />
         </div>
-        <h3>{title}</h3>
-        <p>
-          <span>{publishedDate}</span>-<span>{authors.join(',')}</span>
+        <h3 className='text-md font-medium'>{title}</h3>
+        <p className='mb-1'>
+          Publish Year: {new Date(publishedDate).getFullYear()}
         </p>
+        <p>{authors?.join(',')}</p>
       </div>
     </Link>
   )
