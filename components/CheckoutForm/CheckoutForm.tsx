@@ -6,9 +6,9 @@ import { addBook, getBook } from '@/localStorage'
 
 import useToasts from '@/hooks/use-toast'
 
-import DatePickerField from './DatePickerField'
-import FormField from './FormField'
-import SelectField from './SelectField'
+import DatePickerField from '../DatePickerField'
+import FormField from '../FormField'
+import SelectField from '../SelectField'
 
 import BOOK_CONDITIONS from '@/fixtures/book-condition'
 

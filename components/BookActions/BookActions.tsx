@@ -2,7 +2,7 @@
 
 import { Popover } from '@headlessui/react'
 
-import CheckoutForm from './CheckoutForm'
+import CheckoutForm from '../CheckoutForm'
 
 type Props = {
   id: string

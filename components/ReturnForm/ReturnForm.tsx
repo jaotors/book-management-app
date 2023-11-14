@@ -2,11 +2,12 @@ import { FormEvent, useState } from 'react'
 
 import { getBook, updateBook } from '@/localStorage'
 
-import DatePickerField from './DatePickerField'
-import SelectField from './SelectField'
+import useToasts from '@/hooks/use-toast'
+
+import DatePickerField from '../DatePickerField'
+import SelectField from '../SelectField'
 
 import BOOK_CONDITIONS from '@/fixtures/book-condition'
-import useToasts from '@/hooks/use-toast'
 
 type Props = {
   id: string
@@ -22,7 +23,7 @@ const ReturnForm = ({ id }: Props) => {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault()
 
-    const data: ParsedBookInfo = {
+    const data: StorageBookInfo = {
       id,
       condition: selectedCondition.id,
       borrowed: false,

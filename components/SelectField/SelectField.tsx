@@ -2,8 +2,10 @@
 
 import { Fragment } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
+
+import FormField from '../FormField'
+
 import { ChevronUpDownIcon, CheckIcon } from '@heroicons/react/20/solid'
-import FormField from './FormField'
 
 type Props = {
   label: string

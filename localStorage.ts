@@ -1,4 +1,4 @@
-export const getBooks = (): ParsedBookInfo[] | [] => {
+export const getBooks = (): StorageBookInfo[] | [] => {
   const books = localStorage.getItem('book-management')
 
   if (typeof books === 'string') {
@@ -8,7 +8,7 @@ export const getBooks = (): ParsedBookInfo[] | [] => {
   return []
 }
 
-export const getBook = (id: string): ParsedBookInfo | undefined => {
+export const getBook = (id: string): StorageBookInfo | undefined => {
   const books = getBooks()
 
   const book = books.find((book: { id: string }) => book.id === id)
@@ -16,7 +16,7 @@ export const getBook = (id: string): ParsedBookInfo | undefined => {
   return book
 }
 
-export const addBook = (book: ParsedBookInfo): ParsedBookInfo[] => {
+export const addBook = (book: StorageBookInfo): StorageBookInfo[] => {
   const books = getBooks()
 
   const newBooks = [...books, book]
@@ -26,10 +26,10 @@ export const addBook = (book: ParsedBookInfo): ParsedBookInfo[] => {
   return newBooks
 }
 
-export const updateBook = (book: ParsedBookInfo): ParsedBookInfo => {
+export const updateBook = (book: StorageBookInfo): StorageBookInfo => {
   const books = getBooks()
 
-  const toBeUpdatedBooks: ParsedBookInfo[] = [...books]
+  const toBeUpdatedBooks: StorageBookInfo[] = [...books]
 
   const updatedIdx = toBeUpdatedBooks.findIndex(
     ({ id }: { id: string }) => book.id === id

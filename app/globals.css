@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.description ul {
+  list-style: disc;
+  padding-left: 1rem;
+}

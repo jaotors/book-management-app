@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import clsx from 'clsx'
 import { Datepicker } from '@aliakbarazizi/headless-datepicker'
-import FormField from './FormField'
+
+import FormField from '../FormField'
 
 type Props = {
   label: string

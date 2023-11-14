@@ -1,4 +1,4 @@
-type BookInfo = {
+type BookApiInfo = {
   id: string
   volumeInfo: {
     title: string
@@ -10,7 +10,17 @@ type BookInfo = {
   }
 }
 
-type ParsedBookInfo = {
+type BookInfo = {
+  id: string
+  title: string
+  authors: string[]
+  image: string
+  publishedDate: string
+  condition: 'undamaged' | 'damaged' | string // need to know how to remove this string
+  status: 'free' | 'paid' | string
+}
+
+type StorageBookInfo = {
   id: string
   condition: 'undamaged' | 'damaged' | string // need to know how to remove this string
   borrower: string
