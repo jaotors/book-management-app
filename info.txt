@@ -85,6 +85,17 @@ fix design:
 
 
 
+todos:
+- merging of api and localstorage
+  - after it search move it to localstorage
+  - check the localstorage if there is a dupe
+  - if there is, dont add it, if none the add it.
+- apply the condition and status
+- book summary page
+  - get book from store
+  - get the book from api
+  - merge the condition and status
+- fix design: refer on the top
 
 
 

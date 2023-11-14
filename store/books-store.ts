@@ -1,11 +1,11 @@
 import { create } from 'zustand'
-import { getBooks } from '@/localStorage'
+import { getBooks, addBook } from '@/localStorage'
 
 type BooksState = {
   books: StorageBookInfo[]
   getBooks: () => StorageBookInfo[] | []
   getBook: (id: string) => StorageBookInfo | undefined
-  addBook: () => void
+  addBook: (book: StorageBookInfo) => void
   updateBook: () => void
 }
 
@@ -25,7 +25,10 @@ const useBooksStore = create<BooksState>()((set, get) => ({
 
     return book
   },
-  addBook: () => {},
+  addBook: (book) => {
+    addBook(book)
+    set({ books: [...get().books, book] })
+  },
   updateBook: () => {},
 }))
 

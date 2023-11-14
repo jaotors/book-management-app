@@ -2,8 +2,6 @@
 
 import { useState, FormEvent } from 'react'
 
-import { addBook, getBook } from '@/localStorage'
-
 import useToasts from '@/hooks/use-toast'
 
 import DatePickerField from '../DatePickerField'
@@ -11,6 +9,7 @@ import FormField from '../FormField'
 import SelectField from '../SelectField'
 
 import BOOK_CONDITIONS from '@/fixtures/book-condition'
+import useBooksStore from '@/store/books-store'
 
 type Props = {
   id: string
@@ -19,6 +18,10 @@ type Props = {
 
 const CheckoutForm = ({ id, status }: Props) => {
   const { successToast } = useToasts()
+  const [getBook, addBook] = useBooksStore((state) => [
+    state.getBook,
+    state.addBook,
+  ])
   const [selectedCondition, setSelectedCondition] = useState<Condition>(
     BOOK_CONDITIONS[0]
   )
