@@ -1,14 +1,16 @@
-import type { Metadata } from 'next'
+import { ToastContainer } from 'react-toastify'
 
-export const metadata: Metadata = {
-  title: 'Book Management App',
-  description: 'Book Management App by Foo Bar Baz',
-}
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function BooksLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return <div className='p-2'>{children}</div>
+  return (
+    <div className='p-2'>
+      {children}
+      <ToastContainer />
+    </div>
+  )
 }

@@ -35,10 +35,6 @@ Books API
 - authors: volumeInfo.authors
 - image: volumeInfo.imageLinks.thumbnail
 
-Conclusion
-- Google Books API is only for the get data of all the books
-- adding the status/free/fee charged is on our end
-
 
 process flow
 - searchbox

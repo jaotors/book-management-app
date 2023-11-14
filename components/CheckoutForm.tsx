@@ -2,10 +2,13 @@
 
 import { useState, FormEvent } from 'react'
 
+import { addBook, getBook } from '@/localStorage'
+
+import useToasts from '@/hooks/use-toast'
+
 import DatePickerField from './DatePickerField'
 import FormField from './FormField'
 import SelectField from './SelectField'
-import { addBook, getBook } from '@/localStorage'
 
 const BOOK_CONDITIONS = [
   {
@@ -29,7 +32,10 @@ type Props = {
 }
 
 const CheckoutForm = ({ id, status }: Props) => {
-  const [selectedCondition, setSelectedCondition] = useState<Condition>(BOOK_CONDITIONS[0])
+  const { successToast } = useToasts()
+  const [selectedCondition, setSelectedCondition] = useState<Condition>(
+    BOOK_CONDITIONS[0]
+  )
   const [dateTime, setDateTime] = useState<Date | null>(null)
 
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
@@ -52,8 +58,9 @@ const CheckoutForm = ({ id, status }: Props) => {
     const book = getBook(data.id)
 
     if (!book) {
-      const response = addBook(data)
-      
+      addBook(data)
+      successToast('Book has been successfully borrowed')
+      return
     }
   }
 
