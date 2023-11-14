@@ -10,21 +10,7 @@ import DatePickerField from './DatePickerField'
 import FormField from './FormField'
 import SelectField from './SelectField'
 
-const BOOK_CONDITIONS = [
-  {
-    id: 'undamaged',
-    name: 'Undamaged',
-  },
-  {
-    id: 'damaged',
-    name: 'Damaged',
-  },
-]
-
-type Condition = {
-  id: 'undamaged' | 'undamaged' | string
-  name: string
-}
+import BOOK_CONDITIONS from '@/fixtures/book-condition'
 
 type Props = {
   id: string
