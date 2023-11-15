@@ -89,10 +89,11 @@ fix design:
 
 
 todos:
-- merging of api and localstorage
-  - after it search move it to localstorage
+- merging of api data and localstorage data
+  - on the checkout, thats the time that we are going
+    to add it on the storage
   - check the localstorage if there is a dupe
-  - if there is, dont add it, if none the add it.
+  - if there is, dont add it, if none then add it.
 
 - apply the condition and status
 

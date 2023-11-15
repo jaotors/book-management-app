@@ -19,10 +19,7 @@ type Props = {
 
 const CheckoutForm = ({ id, status }: Props) => {
   const { successToast } = useToasts()
-  const [getBook, addBook] = useBooksStore((state) => [
-    state.getBook,
-    state.addBook,
-  ])
+  const [checkoutBook] = useBooksStore((state) => [state.checkoutBook])
   const [selectedCondition, setSelectedCondition] = useState<Condition>(
     BOOK_CONDITIONS[0]
   )
@@ -32,26 +29,21 @@ const CheckoutForm = ({ id, status }: Props) => {
     evt.preventDefault()
 
     const formData = new FormData(evt.currentTarget)
-    const name = formData.get('name')
+    const name = formData.get('name')?.toString()
 
     if (!name || !selectedCondition || !dateTime) return
 
     const data = {
-      id,
-      borrower: name.toString(),
+      borrower: name,
       status,
       borrowed: true,
       condition: selectedCondition.id,
       borrowedAt: dateTime,
     }
 
-    const book = getBook(data.id)
+    checkoutBook(id, data)
 
-    if (!book) {
-      addBook(data)
-      successToast('Book has been successfully borrowed')
-      return
-    }
+    successToast('Book has been successfully borrowed')
   }
 
   return (

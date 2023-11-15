@@ -30,6 +30,18 @@ type StorageBookInfo = {
   returnedAt?: Date | null
 }
 
+type MergeBookInfo = {
+  id: string
+  title: string
+  authors: string[]
+  image: string
+  description: string
+  publishedDate: string
+  condition: 'undamaged' | 'damaged' | string // need to know how to remove this string
+  status: 'free' | 'paid' | string
+  borrowed: boolean
+}
+
 type Condition = {
   id: 'undamaged' | 'undamaged' | string
   name: string
