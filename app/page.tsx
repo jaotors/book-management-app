@@ -7,12 +7,10 @@ import useBooksStore from '@/store/books-store'
 
 import Header from '@/components/Header'
 import Card from '@/components/Card'
-import getRandomNumber from '@/helpers/getRandomNumber'
 
-const STATUS: { [key: string]: string } = {
-  free: 'Free to hire',
-  paid: 'Fee charged',
-}
+import getRandomNumber from '@/helpers/get-random-number'
+
+import STATUS from '@/fixtures/book-status'
 
 export default function Home() {
   const [getBooks] = useBooksStore((state) => [state.getBooks])
@@ -25,7 +23,8 @@ export default function Home() {
     }
     const books = getBooks()
     const data = await fetchBooks(search)
-    const newData = data.items.map((book: BookApiInfo) => {
+
+    const newData = data?.items.map((book: BookApiInfo) => {
       const dataBook = books.find((parsedBook) => parsedBook.id === book.id)
 
       const condition = dataBook?.condition || 'undamaged'
@@ -57,7 +56,7 @@ export default function Home() {
             image={book.image}
             publishedDate={book.publishedDate}
             condition={book.condition}
-            status={STATUS[book.status]}
+            status={book.status}
           />
         ))}
       </div>

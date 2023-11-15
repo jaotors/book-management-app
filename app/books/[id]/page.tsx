@@ -1,14 +1,17 @@
 'use client'
 
 import Image from 'next/image'
+import { useSearchParams } from 'next/navigation'
 import parse from 'html-react-parser'
 
 import { fetchBook } from '@/api/books'
 
+import useBooksStore from '@/store/books-store'
+
 import BookActions from '@/components/BookActions'
+import Tags from '@/components/Tags'
 
 import { ArrowLeftIcon } from '@heroicons/react/24/solid'
-import Tags from '@/components/Tags'
 
 type Props = {
   params: {
@@ -17,7 +20,12 @@ type Props = {
 }
 
 const BookSummary = async ({ params: { id } }: Props) => {
+  const searchParams = useSearchParams()
+  const [getBook] = useBooksStore((state) => [state.getBook])
+  const localBook = getBook(id)
   const data = await fetchBook(id)
+
+  const status = localBook?.status ?? searchParams.get('status') ?? 'fee'
 
   return (
     <div className='flex flex-col p-4'>
@@ -40,7 +48,7 @@ const BookSummary = async ({ params: { id } }: Props) => {
       </div>
       <div className='flex justify-between mb-2 items-center'>
         <h2 className='text-2xl font-medium'>{data.volumeInfo.title}</h2>
-        <BookActions id={id} status='fee' />
+        <BookActions id={id} status={status} />
       </div>
       <div className='flex gap-1 mb-2'>
         <Tags name='Fee charged' important />

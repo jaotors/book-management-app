@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
+
 import Tags from '../Tags'
+
+import STATUS from '@/fixtures/book-status'
 
 type Props = {
   id: string
@@ -22,7 +25,7 @@ const Card = ({
   publishedDate,
 }: Props) => {
   return (
-    <Link href={`/books/${id}`} key={id}>
+    <Link href={`/books/${id}?condition=${condition}&status=${status}`} key={id}>
       <div className='flex flex-col p-2 rounded border border-b-purple-800'>
         <div className='relative w-100 rounded overflow-hidden h-[128px] mb-2'>
           <Image
@@ -34,7 +37,7 @@ const Card = ({
           />
         </div>
         <div className='flex justify-between items-center'>
-          <Tags name={status} important />
+          <Tags name={STATUS[status]} important />
           <Tags name={condition} />
         </div>
         <h3 className='text-md font-medium'>{title}</h3>

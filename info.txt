@@ -73,9 +73,12 @@ fix data transformation
 fix design:
 - root 
   - search component page
+  - use action on form to go to /books
 - /books
-  - header
-    - search component
+  - this will have the query
+  - layout
+    - header
+      - search component
 - /books/slug_id
   - header
     - search component
@@ -90,11 +93,14 @@ todos:
   - after it search move it to localstorage
   - check the localstorage if there is a dupe
   - if there is, dont add it, if none the add it.
+
 - apply the condition and status
+
 - book summary page
   - get book from store
   - get the book from api
   - merge the condition and status
+
 - fix design: refer on the top
 
 
