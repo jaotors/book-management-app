@@ -8,7 +8,7 @@ type BooksState = {
   getBook: (
     id: string,
     condition: string,
-    status: string
+    status?: string
   ) => Promise<MergeBookInfo>
   addBook: (book: StorageBookInfo) => void
   checkoutBook: (
@@ -67,8 +67,9 @@ const useBooksStore = create<BooksState>()((set, get) => ({
       description: apiBook.volumeInfo.description,
       publishedDate: apiBook.volumeInfo.publishedDate,
       condition: book?.condition ?? condition,
-      status: book?.status ?? status,
+      status: book?.status! ?? status,
       borrowed: book?.borrowed ?? false,
+      borrower: book?.borrower ?? ''
     }
 
     return mergedBook

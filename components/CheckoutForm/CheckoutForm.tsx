@@ -11,6 +11,7 @@ import FormField from '../FormField'
 import SelectField from '../SelectField'
 
 import BOOK_CONDITIONS from '@/fixtures/book-condition'
+import { addTransaction } from '@/localStorage'
 
 type Props = {
   id: string
@@ -42,7 +43,14 @@ const CheckoutForm = ({ id, status, onClose }: Props) => {
       borrowedAt: dateTime,
     }
 
+    const transactionData: TransactionInfo = {
+      id: new Date().getTime().toString(),
+      bookId: id,
+      ...data,
+    }
+
     checkoutBook(id, data)
+    addTransaction(transactionData)
 
     successToast('Book has been successfully borrowed')
     onClose()

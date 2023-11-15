@@ -40,9 +40,14 @@ type MergeBookInfo = {
   condition: 'undamaged' | 'damaged' | string // need to know how to remove this string
   status: 'free' | 'paid' | string
   borrowed: boolean
+  borrower: string
 }
 
 type Condition = {
   id: 'undamaged' | 'damaged' | string
   name: string
+}
+
+type TransactionInfo = StorageBookInfo & {
+  bookId: string
 }

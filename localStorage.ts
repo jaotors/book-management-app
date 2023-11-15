@@ -44,3 +44,22 @@ export const updateBook = (book: StorageBookInfo): StorageBookInfo => {
 
   return book
 }
+
+export const getAllTransactions = () => {
+  const transactions = localStorage.getItem('book-transactions')
+
+  if (typeof transactions === 'string') {
+    return JSON.parse(transactions)
+  }
+
+  return []
+}
+
+export const addTransaction = (transaction: TransactionInfo) => {
+  const transactions = getAllTransactions()
+
+  const newTransactions = [...transactions, transaction]
+
+  localStorage.setItem('book-transactions', JSON.stringify(newTransactions))
+
+}
