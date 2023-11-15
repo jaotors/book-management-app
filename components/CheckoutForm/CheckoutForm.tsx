@@ -15,9 +15,10 @@ import BOOK_CONDITIONS from '@/fixtures/book-condition'
 type Props = {
   id: string
   status: string
+  onClose: () => void
 }
 
-const CheckoutForm = ({ id, status }: Props) => {
+const CheckoutForm = ({ id, status, onClose }: Props) => {
   const { successToast } = useToasts()
   const [checkoutBook] = useBooksStore((state) => [state.checkoutBook])
   const [selectedCondition, setSelectedCondition] = useState<Condition>(
@@ -44,6 +45,7 @@ const CheckoutForm = ({ id, status }: Props) => {
     checkoutBook(id, data)
 
     successToast('Book has been successfully borrowed')
+    onClose()
   }
 
   return (

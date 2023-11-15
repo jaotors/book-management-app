@@ -11,9 +11,10 @@ import BOOK_CONDITIONS from '@/fixtures/book-condition'
 
 type Props = {
   id: string
+  onClose: () => void
 }
 
-const ReturnForm = ({ id }: Props) => {
+const ReturnForm = ({ id, onClose }: Props) => {
   const { successToast } = useToasts()
   const [selectedCondition, setSelectedCondition] = useState<Condition>(
     BOOK_CONDITIONS[0]
@@ -37,6 +38,7 @@ const ReturnForm = ({ id }: Props) => {
     updateBook(data)
 
     successToast('Book successfully returned')
+    onClose()
   }
 
   return (

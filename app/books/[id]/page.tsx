@@ -56,18 +56,22 @@ const BookSummary = ({ params: { id } }: Props) => {
         />
       </div>
       <div className='flex justify-between mb-2 items-center'>
-        <h2 className='text-2xl font-medium'>{data.title}</h2>
-        <BookActions id={id} status={status} />
+        <div>
+          <h2 className='text-2xl font-medium'>{data.title}</h2>
+          <p className='flex flex-col mb-2'>
+            <span>
+              Publish Year: {new Date(data.publishedDate).getFullYear()}
+            </span>
+            <span>Author/s: {data.authors.join(', ')}</span>
+          </p>
+        </div>
+        <BookActions id={id} status={data.status} borrowed={data.borrowed} />
       </div>
       <div className='flex gap-1 mb-2'>
         <Tags name='Fee charged' important />
         <Tags name='Undamaged' />
       </div>
       <div className='description mb-2'>{parse(data.description)}</div>
-      <p className='flex flex-col mb-2'>
-        <span>Publish Year: {new Date(data.publishedDate).getFullYear()}</span>
-        <span>Author/s: {data.authors.join(', ')}</span>
-      </p>
     </div>
   )
 }

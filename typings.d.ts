@@ -43,6 +43,6 @@ type MergeBookInfo = {
 }
 
 type Condition = {
-  id: 'undamaged' | 'undamaged' | string
+  id: 'undamaged' | 'damaged' | string
   name: string
 }
