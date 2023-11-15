@@ -1,6 +1,6 @@
 const STATUS: { [key: string]: string } = {
   free: 'Free to hire',
-  paid: 'Fee charged',
+  paid: '$3 charged',
 }
 
 export default STATUS

@@ -12,6 +12,8 @@ import Tags from '@/components/Tags'
 
 import { ArrowLeftIcon } from '@heroicons/react/24/solid'
 
+import STATUS from '@/fixtures/book-status'
+
 type Props = {
   params: {
     id: string
@@ -35,6 +37,8 @@ const BookSummary = ({ params: { id } }: Props) => {
   }, [id])
 
   if (!data) return <></>
+
+  console.log('data', data.status)
 
   return (
     <div className='flex flex-col p-4'>
@@ -68,8 +72,8 @@ const BookSummary = ({ params: { id } }: Props) => {
         <BookActions id={id} status={data.status} borrowed={data.borrowed} />
       </div>
       <div className='flex gap-1 mb-2'>
-        <Tags name='Fee charged' important />
-        <Tags name='Undamaged' />
+        <Tags name={STATUS[data.status]} important />
+        <Tags name={data.condition} />
       </div>
       <div className='description mb-2'>{parse(data.description)}</div>
     </div>

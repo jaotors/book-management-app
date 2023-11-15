@@ -3,6 +3,7 @@ import { getBooks, addBook, getBook, updateBook } from '@/localStorage'
 import { fetchBook } from '@/api/books'
 
 type BooksState = {
+  books: StorageBookInfo[] | []
   getBooks: () => StorageBookInfo[] | []
   getBook: (
     id: string,
@@ -30,9 +31,11 @@ type BooksState = {
 }
 
 const useBooksStore = create<BooksState>()((set, get) => ({
+  books: [],
   getBooks: () => {
     const books = getBooks()
 
+    set({ books })
     return books
   },
   getBook: async (id: string, condition, status) => {
@@ -51,7 +54,9 @@ const useBooksStore = create<BooksState>()((set, get) => ({
         status,
         condition,
       }
+
       get().addBook(dataTobeAdded)
+      set({ books: [...get().books, dataTobeAdded] })
     }
 
     const mergedBook: MergeBookInfo = {
@@ -88,8 +93,15 @@ const useBooksStore = create<BooksState>()((set, get) => ({
       ...book,
       ...data,
     }
+    const updatedBooks = get().books.map((book: StorageBookInfo) => {
+      if (id === book.id) {
+        return updatedBook
+      }
+      return book
+    })
 
     updateBook(updatedBook)
+    set({ books: updatedBooks })
   },
   returnBook: (
     id: string,
@@ -109,7 +121,15 @@ const useBooksStore = create<BooksState>()((set, get) => ({
       borrowedAt: null,
     }
 
+    const updatedBooks = get().books.map((book: StorageBookInfo) => {
+      if (id === book.id) {
+        return updatedBook
+      }
+      return book
+    })
+
     updateBook(updatedBook)
+    set({ books: updatedBooks })
   },
 }))
 
