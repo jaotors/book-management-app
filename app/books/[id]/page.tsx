@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import parse from 'html-react-parser'
 
 import useBooksStore from '@/store/books-store'
@@ -21,6 +21,7 @@ type Props = {
 }
 
 const BookSummary = ({ params: { id } }: Props) => {
+  const router = useRouter()
   const searchParams = useSearchParams()
   const [getBook] = useBooksStore((state) => [state.getBook])
   const [data, setData] = useState<MergeBookInfo>()
@@ -38,14 +39,12 @@ const BookSummary = ({ params: { id } }: Props) => {
 
   if (!data) return <></>
 
-  console.log('data', data.status)
-
   return (
     <div className='flex flex-col p-4'>
       <button
         type='button'
         onClick={() => {
-          console.log('test')
+          router.back()
         }}
       >
         <ArrowLeftIcon className='text-gray-500 h-8 w-8 mb-2 cursor-pointer' />

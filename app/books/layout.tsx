@@ -1,8 +1,9 @@
 import { ToastContainer } from 'react-toastify'
 
+
 import 'react-toastify/dist/ReactToastify.css'
 
-export default function BooksSummaryLayout({
+export default function BooksLayout({
   children,
 }: {
   children: React.ReactNode

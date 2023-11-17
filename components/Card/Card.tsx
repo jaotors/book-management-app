@@ -25,8 +25,12 @@ const Card = ({
   publishedDate,
 }: Props) => {
   return (
-    <Link href={`/books/${id}?condition=${condition}&status=${status}`} key={id}>
-      <div className='flex flex-col p-2 rounded border border-b-purple-800'>
+    <Link
+      href={`/books/${id}?condition=${condition}&status=${status}`}
+      className='bg-white border-2 border-white rounded visited:border-purple-900'
+      key={id}
+    >
+      <div className='flex flex-col p-2 rounded'>
         <div className='relative w-100 rounded overflow-hidden h-[128px] mb-2'>
           <Image
             src={image}
