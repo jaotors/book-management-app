@@ -6,6 +6,5 @@
 
 ## Tech stack
 - [Next.js](https://nextjs.org/)
-- [AppWrite](https://appwrite.io/)
 - [TailwindCSS](https://tailwindcss.com/)
-- [Books API]()
+- [Books API](https://developers.google.com/books/docs/v1/using)
