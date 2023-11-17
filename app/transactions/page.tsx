@@ -1,24 +1,35 @@
 'use client'
 
-import { ChangeEvent, useState } from 'react'
-import { getAllTransactions } from '@/localStorage'
+import { ChangeEvent, useState, useEffect } from 'react'
+import useTransactionStore from '@/store/transactions-store'
 
 export default function Transactions() {
-  const transactions = getAllTransactions()
+  const getTransactions = useTransactionStore((state) => state.getTransactions)
   const [search, setSearch] = useState('')
+  const [transactions, setTransactions] = useState<TransactionInfo[]>([])
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value)
   }
 
-  const filteredTransactions = !search
-    ? transactions
-    : transactions.filter((transaction: TransactionInfo) => {
-        return (
-          transaction.borrower.toLowerCase().indexOf(search.toLowerCase()) !==
-          -1
-        )
-      })
+  useEffect(() => {
+    const localTransactions: TransactionInfo[] = getTransactions()
+
+    if (search) {
+      const filteredTransactions = !search
+        ? localTransactions
+        : localTransactions.filter((transaction: TransactionInfo) => {
+            return (
+              transaction.borrower
+                .toLowerCase()
+                .indexOf(search.toLowerCase()) !== -1
+            )
+          })
+      setTransactions(filteredTransactions)
+    } else {
+      setTransactions(localTransactions)
+    }
+  }, [search, getTransactions])
 
   return (
     <div className='p-2 mt-6'>
@@ -32,15 +43,17 @@ export default function Transactions() {
       </div>
       <table className='w-full border-purple-600'>
         <thead className='w-full'>
-          <th>id</th>
-          <th>book id</th>
-          <th>condition</th>
-          <th>borrower</th>
-          <th>borrowed at</th>
-          <th>returned at</th>
+          <tr>
+            <th>id</th>
+            <th>book id</th>
+            <th>condition</th>
+            <th>borrower</th>
+            <th>borrowed at</th>
+            <th>returned at</th>
+          </tr>
         </thead>
         <tbody>
-          {filteredTransactions.map((transaction: TransactionInfo) => {
+          {transactions.map((transaction: TransactionInfo) => {
             const borrowedAt = transaction.borrowedAt
               ? new Date(transaction.borrowedAt).toDateString()
               : '---'

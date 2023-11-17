@@ -13,6 +13,7 @@ type Props = {
   title: string
   image: string
   publishedDate: string
+  borrowed: Boolean | null | undefined
 }
 
 const Card = ({
@@ -23,6 +24,7 @@ const Card = ({
   title,
   image,
   publishedDate,
+  borrowed,
 }: Props) => {
   return (
     <Link
@@ -31,6 +33,9 @@ const Card = ({
       key={id}
     >
       <div className='flex flex-col p-2 rounded'>
+        <div className='flex'>
+          <Tags name={borrowed ? 'On Loan' : 'On Shelf'} />
+        </div>
         <div className='relative w-100 rounded overflow-hidden h-[128px] mb-2'>
           <Image
             src={image}

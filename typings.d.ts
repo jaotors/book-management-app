@@ -18,6 +18,7 @@ type BookInfo = {
   publishedDate: string
   condition: 'undamaged' | 'damaged' | string // need to know how to remove this string
   status: 'free' | 'paid' | string
+  borrowed?: Boolean | null
 }
 
 type StorageBookInfo = {
