@@ -35,7 +35,7 @@ const BookSummary = ({ params: { id } }: Props) => {
     }
 
     fetchBook()
-  }, [id])
+  }, [id, getBook, searchParams])
 
   if (!data) return <></>
 

@@ -48,7 +48,7 @@ export default function Books() {
     }
 
     fetchQuery()
-  }, [])
+  }, [searchQuery, books])
 
   if (!searchQuery) return <></>
 
@@ -57,8 +57,9 @@ export default function Books() {
       <Search />
       <main className='flex flex-col p-2'>
         <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 xs:grid-cols-1 gap-4'>
-          {data.map((book: BookInfo) => (
+          {data.map((book: BookInfo, index: number) => (
             <Card
+              key={`${book.id} + ${index}`}
               id={book.id}
               title={book.title}
               authors={book.authors}
