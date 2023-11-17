@@ -17,14 +17,13 @@ export default function Books() {
   const searchParams = useSearchParams()
   const searchQuery = searchParams.get('search')
 
-  const [getBooks] = useBooksStore((state) => [state.getBooks])
+  const [books] = useBooksStore((state) => [state.books])
   const [data, setData] = useState([])
 
   useEffect(() => {
     if (!searchQuery) return
 
     const fetchQuery = async () => {
-      const books = getBooks()
       const data = await fetchBooks(searchQuery)
 
       const newData = data?.items.map((book: BookApiInfo) => {

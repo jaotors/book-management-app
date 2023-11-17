@@ -39,7 +39,7 @@ const useBooksStore = create<BooksState>()((set, get) => ({
     return books
   },
   getBook: async (id: string, condition, status) => {
-    const books = getBooks()
+    const books = get().getBooks()
     const apiBook = await fetchBook(id)
 
     const book: StorageBookInfo | undefined = books.find(
@@ -69,7 +69,7 @@ const useBooksStore = create<BooksState>()((set, get) => ({
       condition: book?.condition ?? condition,
       status: book?.status! ?? status,
       borrowed: book?.borrowed ?? false,
-      borrower: book?.borrower ?? ''
+      borrower: book?.borrower ?? '',
     }
 
     return mergedBook
